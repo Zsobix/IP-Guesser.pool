@@ -23,10 +23,8 @@ def timeout():
 
 def appendtopool():
 	print("appending to pool")
-	os.system('git stash push --include-untracked')
-	os.system('git add ips.txt')
 	os.system('git commit -m "automerge"')
-	os.system('git pull origin master --allow-unrelated-histories')
+	os.system('git request-pull origin/master master')
 	print("done! the automerge will happen in a few minutes")
 	time.sleep(4)
 
