@@ -1,5 +1,3 @@
-#/bin/python3 python3
-
 from os import name as sysname
 from os import system as terminal
 import random
@@ -24,14 +22,32 @@ def timeout():
 	print('a')
 	time.sleep(64)
 
+def clear():
+	terminal("clear")
+
 def append():
 	print("appending to pool")
 	terminal('git add ips.txt')
 	terminal('git commit -m "automerge"')
 	terminal('git request-pull origin/master master')
-	"""
-	gh pr create --base origin/master --head master --title "Automerge"
-	"""
+	clear()
+	print("Appending [.]")
+	time.sleep(0.1)
+	clear()
+	print("Appending [..]")
+	time.sleep(0.1)
+	clear()
+	print("Appending [...]")
+	time.sleep(0.1)
+	clear()
+	print("Appending [....]")
+	time.sleep(0.1)
+	clear()
+	print("Appending [.....]")
+	time.sleep(0.1)
+	clear()
+	print("Appending [......]")
+	time.sleep(0.1)
 	print("done! the automerge will happen in a few minutes")
 	time.sleep(4)
 
