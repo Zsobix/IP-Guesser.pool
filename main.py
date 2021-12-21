@@ -1,14 +1,17 @@
-import os
+#/bin/python3 python3
+
+from os import name as sysname
+from os import system as terminal
 import random
 import urllib3
 import time
 
 ipcount = 0
 
-if os.name != "posix":
+if sysname != "posix":
 	exit()
 
-os.system('git remote add origin https://github.com/Zsobix/IP-Guesser.pool.git')
+terminal('git remote add origin https://github.com/Zsobix/IP-Guesser.pool.git')
 
 https_PoolManager = urllib3.PoolManager()
 
@@ -21,10 +24,14 @@ def timeout():
 	print('a')
 	time.sleep(64)
 
-def appendtopool():
+def append():
 	print("appending to pool")
-	os.system('git commit -m "automerge"')
-	os.system('git request-pull origin/master master')
+	terminal('git add ips.txt')
+	terminal('git commit -m "automerge"')
+	terminal('git request-pull origin/master master')
+	"""
+	gh pr create --base origin/master --head master --title "Automerge"
+	"""
 	print("done! the automerge will happen in a few minutes")
 	time.sleep(4)
 
@@ -41,7 +48,7 @@ while True:
 	ipnum4 = str(ipnum4)
 	ip = ipnum1 + "." + ipnum2 + "." + ipnum3 + "." + ipnum4
 	if ip in openips2:
-		os.system("python3 main.py")
+		terminal("python3 main.py")
 		openips.close()
 		exit()
 	r = https_PoolManager.request('GET', 'http://ip-api.com/csv/' + ip + '?fields=country,city')
@@ -51,7 +58,7 @@ while True:
 	location = r.data
 	location = location.decode(encoding='UTF-8')
 	if location == "":
-		os.system("python3 main.py")
+		terminal("python3 main.py")
 		openips.close()
 		exit()
 	print(ip)
@@ -62,6 +69,6 @@ while True:
 	ip = ip + '\n'
 	log(ip)
 	ipcount = ipcount+1
-	if ipcount == 15:
-		appendtopool()
+	if ipcount == 150:
+		append()
 	openips.close()
