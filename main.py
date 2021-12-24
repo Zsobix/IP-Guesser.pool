@@ -1,3 +1,5 @@
+#!/bin/python3
+
 from os import name as sysname
 from os import system as terminal
 import random
@@ -19,7 +21,7 @@ def log(logging_ips):
 	logs.close()
 
 def timeout():
-	print('a')
+	print('Timeout')
 	time.sleep(64)
 
 def clear():
@@ -85,6 +87,7 @@ while True:
 	ip = ip + '\n'
 	log(ip)
 	ipcount = ipcount+1
-	if ipcount == 150:
+	if ipcount <= 150:
 		append()
+		ipcount = 0
 	openips.close()
